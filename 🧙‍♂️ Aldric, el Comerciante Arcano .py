@@ -1,6 +1,5 @@
-#======================================
-# DICCIONARIOS INICIALES (Mismos datos)
-#======================================
+# hare los diccionaroio (Mismos datos)
+
 items = {
     "MAG001": ["Agonía de Escarcha", "Arma", "Legendaria", "Hielo"],
     "MAG002": ["Anillo de Sauron", "Accesorio", "Epica", "Magia"],
@@ -19,42 +18,41 @@ inventario = {
     "MAG006": [800, 0],
 }
 
-# ==========================================
-# FUNCIONES REESTRUCTURADAS
-# ==========================================
+# aqui pondre las funcione si falla caga el codgo 
 
-# --- Opción 1: Stock por categoría ---
+
+# Opción 1 es para poder ver el Stock por categoría
 def stock_categoria(categoria):
-    # Uso de una sola línea con generator expression para sumar el stock
+    # realise solo el uso de una linea  para sumar el stock poneindo todos los item aen el formato 
     total = sum(inventario[cod][1] for cod, datos in items.items() if datos[1].lower() == categoria.lower())
     print(f"El stock es: {total}")
 
 
-# --- Opción 2: Búsqueda por precio ---
+# Opción 2 espara que se realize la  Búsqueda por precio
 def busqueda_precio(p_min, p_max):
-    # Comprensión de listas para filtrar de manera más avanzada y directa
+    # intente dejar la lista lo mas organizada posiblepara ver la listas y para filtrar de manera más avanzada y directa
     resultados = [
         f"{items[cod][2]}--{cod}" 
         for cod, (precio, stock) in inventario.items() 
         if p_min <= precio <= p_max and stock > 0
     ]
-    resultados.sort()  # Mantiene el orden alfabético requerido
+    resultados.sort()  # espero mantenga  el orden alfabético requerido sino se rompe 
     print(resultados)
 
 
-# --- Opción 3: Actualizar precio ---
+# Opción 3 es para Actualizar el  precio 
 def actualizar_precio(codigo, precio):
-    # Usamos .get() para verificar la existencia del código elegantemente
+    # usare el .get() para verificar la existencia del código elegantemente para destacar 
     if inventario.get(codigo):
         inventario[codigo][0] = precio
         return True
     return False
 
 
-# --- Opción 4: Buscar objeto por código ---
+# Opción 4: Buscar objeto por código
 def buscar_codigo(codigo):
     if codigo in items:
-        # Se estructuró usando un solo print multilínea con formato limpio (\t)
+        # estoy usando un solo print multilínea con formato limpio (\t) que es el que mejor entiendo 
         print(f"- Objeto encontrado -\n"
               f"Nombre:\t\t{items[codigo][0]}\n"
               f"Categoría:\t{items[codigo][1]}\n"
@@ -66,19 +64,17 @@ def buscar_codigo(codigo):
         print("El objeto mágico no existe!!")
 
 
-# --- Opción 5: Mostrar todos los objetos ---
+#  Opción 5 tiene que  Mostrar todos los objetos
 def mostrar_todos():
     print("=== CATÁLOGO DE OBJETOS ===")
-    # Recorrido limpio utilizando desempaquetado de tuplas
+    # rdta funcion deveria de realizar un Recorrido limpio utilizando desempaquetado 
     for cod, (nombre, cat, rareza, tipo) in items.items():
         precio, stock = inventario[cod]
         print(f"Código: {cod} | Nombre: {nombre} | Cat: {cat} | Rareza: {rareza} | Tipo: {tipo} | Precio: ${precio} | Stock: {stock}")
     print("-" * 40)
 
 
-# ==========================================
-# PROGRAMA PRINCIPAL (MENÚ ALTERNATIVO)
-# ==========================================
+# aqui colocarle el PROGRAMA PRINCIPAL o el MENÚ ALTERNATIVO
 def menu_principal():
     controlador = True
     while controlador:
@@ -92,7 +88,7 @@ def menu_principal():
             stock_categoria(input("Ingrese categoría: "))
             
         elif opcion == "2":
-            # Validación de errores optimizada en un solo bloque repetitivo
+            # despues de aqui hare los Validadores de errores optimizada en un solo bloque repetitivo que no se rompa o me voy a la ctm 
             while True:
                 try:
                     p_min = int(input("Ingrese precio mínimo: "))
@@ -126,7 +122,7 @@ def menu_principal():
             
         elif opcion == "6":
             print("El NPC ha cerrado su tienda. Hasta pronto, aventurero.")
-            controlador = False # Termina el bucle usando la variable de control
+            controlador = False # aqui estoy colocando la variable que deveria de Terminal el bucle usando la variable de control
             
         else:
             print("Debe seleccionar una opción válida!!")
